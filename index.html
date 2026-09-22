@@ -16,7 +16,6 @@
             --color-verde-claro: #2d8e3e;
             --color-azul: #1e88e5;
             --color-amarillo: #ffc107;
-            --color-blanco: #ffffff;
             --color-gris-light: #f5f5f5;
             --color-gris-dark: #333333;
         }
@@ -27,7 +26,6 @@
             color: var(--color-gris-dark);
         }
 
-        /* HEADER */
         header {
             background: linear-gradient(135deg, var(--color-verde-oscuro) 0%, var(--color-verde-claro) 100%);
             color: white;
@@ -44,22 +42,14 @@
             gap: 20px;
         }
 
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
         .header-text h1 {
             font-size: 28px;
             font-weight: bold;
-            margin: 0;
         }
 
         .header-text p {
             font-size: 14px;
             opacity: 0.9;
-            margin: 0;
         }
 
         .header-actions {
@@ -80,7 +70,6 @@
 
         .btn-admin:hover {
             background-color: #ffb300;
-            transform: translateY(-2px);
         }
 
         .btn-logout {
@@ -91,21 +80,18 @@
             border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s ease;
         }
 
         .btn-logout:hover {
             background-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* MAIN CONTENT */
         .container {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* VISTAS */
         .view {
             display: none;
         }
@@ -114,7 +100,6 @@
             display: block;
         }
 
-        /* GALERÍA PÚBLICA */
         .gallery-title {
             text-align: center;
             margin-bottom: 30px;
@@ -142,7 +127,6 @@
         .activity-card:hover {
             transform: translateY(-5px);
             border-color: var(--color-azul);
-            box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
         }
 
         .activity-card.selected {
@@ -162,59 +146,12 @@
             opacity: 0.7;
         }
 
-        .activity-count {
-            font-size: 12px;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .activity-card.selected .activity-count {
-            border-top-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* GALERÍA DE FOTOS */
-        .photos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .photo-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            background-color: white;
-            aspect-ratio: 1;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .photo-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .photo-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         .empty-state {
             text-align: center;
             padding: 60px 20px;
             color: #999;
         }
 
-        .empty-state-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        /* PANEL ADMIN */
         .admin-header {
             background: white;
             padding: 30px;
@@ -238,26 +175,18 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: var(--color-gris-dark);
         }
 
-        input[type="text"],
-        input[type="date"],
-        textarea,
-        select {
+        input, textarea {
             width: 100%;
             padding: 12px;
             border: 2px solid #ddd;
             border-radius: 8px;
             font-size: 14px;
-            transition: border-color 0.3s ease;
             font-family: inherit;
         }
 
-        input[type="text"]:focus,
-        input[type="date"]:focus,
-        textarea:focus,
-        select:focus {
+        input:focus, textarea:focus {
             outline: none;
             border-color: var(--color-azul);
         }
@@ -282,12 +211,10 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 14px;
-            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
             background-color: var(--color-verde-claro);
-            transform: translateY(-2px);
         }
 
         .btn-danger {
@@ -298,7 +225,6 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 13px;
-            transition: all 0.3s ease;
         }
 
         .btn-danger:hover {
@@ -335,7 +261,6 @@
             margin: 3px 0;
         }
 
-        /* LOGIN */
         .login-box {
             background: white;
             padding: 40px;
@@ -367,13 +292,11 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 16px;
-            transition: all 0.3s ease;
             width: 100%;
         }
 
         .btn-login:hover {
             background-color: #1565c0;
-            transform: translateY(-2px);
         }
 
         .loading {
@@ -383,26 +306,12 @@
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .header-text h1 {
-                font-size: 22px;
-            }
-
             .form-row {
                 grid-template-columns: 1fr;
             }
-
             .activity-item {
                 flex-direction: column;
                 align-items: flex-start;
-            }
-
-            .photos-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
         }
     </style>
@@ -410,11 +319,9 @@
 <body>
     <header>
         <div class="header-content">
-            <div class="logo-section">
-                <div class="header-text">
-                    <h1>🍃 Tropa Taulichusco</h1>
-                    <p>San Borja 58 - Limatambo</p>
-                </div>
+            <div class="header-text">
+                <h1>🍃 Tropa Taulichusco</h1>
+                <p>San Borja 58 - Limatambo</p>
             </div>
             <div class="header-actions">
                 <button class="btn-admin" id="btnAdmin" onclick="goToAdmin()">Panel Admin</button>
@@ -428,9 +335,8 @@
         <div class="view active" id="galleryView">
             <h2 class="gallery-title">📸 Nuestras Actividades</h2>
             <div class="activities-filter" id="activitiesFilter"></div>
-            <div class="photos-grid" id="photosGrid"></div>
             <div class="empty-state" id="emptyState">
-                <div class="empty-state-icon">📷</div>
+                <div style="font-size: 48px; margin-bottom: 20px;">📷</div>
                 <p>Selecciona una actividad para ver las fotos</p>
             </div>
         </div>
@@ -459,7 +365,6 @@
                     <div class="form-group">
                         <label for="googleDriveLink">Link de Carpeta Google Drive *</label>
                         <input type="text" id="googleDriveLink" required placeholder="Ej: https://drive.google.com/drive/folders/1ABC...">
-                        <small style="color: #666; display: block; margin-top: 8px;">📌 Comparte la carpeta y copia el link aquí</small>
                     </div>
 
                     <button type="submit" class="btn-primary">✅ Crear Actividad</button>
@@ -485,290 +390,227 @@
         </div>
     </div>
 
-    <!-- FIREBASE SDK -->
+    <!-- FIREBASE SDK - Cargar PRIMERO -->
     <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
 
+    <!-- APLICACIÓN - Ejecutar DESPUÉS -->
     <script>
-        console.log('=== Iniciando aplicación ===');
-
-        // Configuración Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyDI-kro274J6dafEEIVRg9EtM3UF8QOF9g",
-            authDomain: "galeriasb58.firebaseapp.com",
-            projectId: "galeriasb58",
-            storageBucket: "galeriasb58.firebaseapp.storage",
-            messagingSenderId: "367406205049",
-            appId: "1:367406205049:web:b4f0d31dbc302c210a6ca8"
-        };
-
-        console.log('Inicializando Firebase...');
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        console.log('✓ Firebase inicializado');
-
-        let currentUser = null;
-        let selectedActivityId = null;
-
-        // Monitorear estado de autenticación
-        auth.onAuthStateChanged(function(user) {
-            console.log('Auth state changed - Usuario:', user ? user.email : 'NO AUTENTICADO');
-            currentUser = user;
-            updateUI();
-        });
-
-        function updateUI() {
-            console.log('updateUI() - currentUser:', currentUser ? currentUser.email : null);
-            
-            const galleryView = document.getElementById('galleryView');
-            const adminView = document.getElementById('adminView');
-            const loginView = document.getElementById('loginView');
-            const btnAdmin = document.getElementById('btnAdmin');
-            const btnLogout = document.getElementById('btnLogout');
-
-            // Ocultar todas las vistas
-            galleryView.classList.remove('active');
-            adminView.classList.remove('active');
-            loginView.classList.remove('active');
-
-            if (currentUser) {
-                // Usuario autenticado - mostrar admin
-                console.log('Mostrando vista de admin');
-                adminView.classList.add('active');
-                btnAdmin.style.display = 'none';
-                btnLogout.style.display = 'block';
-                loadActivitiesForAdmin();
-            } else {
-                // Usuario no autenticado - mostrar galería
-                console.log('Mostrando vista de galería');
-                galleryView.classList.add('active');
-                btnAdmin.style.display = 'block';
-                btnLogout.style.display = 'none';
-                loadActivitiesForGallery();
-            }
+        // Esperar a que Firebase esté listo
+        if (typeof firebase === 'undefined') {
+            console.error('Firebase no se cargó correctamente');
+            setTimeout(() => initApp(), 2000);
+        } else {
+            initApp();
         }
 
-        function goToAdmin() {
-            console.log('goToAdmin() - currentUser:', currentUser ? currentUser.email : null);
-            
-            const galleryView = document.getElementById('galleryView');
-            const adminView = document.getElementById('adminView');
-            const loginView = document.getElementById('loginView');
+        function initApp() {
+            console.log('✓ Firebase disponible, inicializando app...');
 
-            galleryView.classList.remove('active');
-            adminView.classList.remove('active');
-            loginView.classList.remove('active');
+            const firebaseConfig = {
+                apiKey: "AIzaSyDI-kro274J6dafEEIVRg9EtM3UF8QOF9g",
+                authDomain: "galeriasb58.firebaseapp.com",
+                projectId: "galeriasb58",
+                storageBucket: "galeriasb58.firebaseapp.storage",
+                messagingSenderId: "367406205049",
+                appId: "1:367406205049:web:b4f0d31dbc302c210a6ca8"
+            };
 
-            if (currentUser) {
-                console.log('✓ Mostrando panel admin');
-                adminView.classList.add('active');
-                loadActivitiesForAdmin();
-            } else {
-                console.log('✓ Mostrando login');
-                loginView.classList.add('active');
-            }
-        }
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
+            const db = firebase.firestore();
 
-        function loginWithGoogle() {
-            console.log('loginWithGoogle() llamado');
-            const provider = new firebase.auth.GoogleAuthProvider();
-            
-            auth.signInWithPopup(provider)
-                .then(result => {
-                    console.log('✓ Login exitoso:', result.user.email);
-                    currentUser = result.user;
-                    updateUI();
-                })
-                .catch(error => {
-                    console.error('❌ Error en login:', error.message);
-                    alert('Error: ' + error.message);
-                });
-        }
+            let currentUser = null;
 
-        function logout() {
-            console.log('logout() llamado');
-            auth.signOut().then(() => {
-                console.log('✓ Sesión cerrada');
-                currentUser = null;
-                document.getElementById('activityName').value = '';
-                document.getElementById('activityDate').value = '';
-                document.getElementById('activityDescription').value = '';
-                document.getElementById('googleDriveLink').value = '';
+            // Monitorear autenticación
+            auth.onAuthStateChanged(function(user) {
+                console.log('Auth state:', user ? user.email : 'sin usuario');
+                currentUser = user;
                 updateUI();
             });
-        }
 
-        function saveActivity(event) {
-            event.preventDefault();
-            console.log('saveActivity() llamado');
+            function updateUI() {
+                const galleryView = document.getElementById('galleryView');
+                const adminView = document.getElementById('adminView');
+                const loginView = document.getElementById('loginView');
+                const btnAdmin = document.getElementById('btnAdmin');
+                const btnLogout = document.getElementById('btnLogout');
 
-            if (!currentUser) {
-                alert('Debes iniciar sesión primero');
-                return;
+                galleryView.classList.remove('active');
+                adminView.classList.remove('active');
+                loginView.classList.remove('active');
+
+                if (currentUser) {
+                    adminView.classList.add('active');
+                    btnAdmin.style.display = 'none';
+                    btnLogout.style.display = 'block';
+                    loadActivitiesForAdmin(db, currentUser);
+                } else {
+                    galleryView.classList.add('active');
+                    btnAdmin.style.display = 'block';
+                    btnLogout.style.display = 'none';
+                    loadActivitiesForGallery(db);
+                }
             }
 
-            const name = document.getElementById('activityName').value;
-            const date = document.getElementById('activityDate').value;
-            const description = document.getElementById('activityDescription').value;
-            const driveLink = document.getElementById('googleDriveLink').value;
+            window.goToAdmin = function() {
+                const galleryView = document.getElementById('galleryView');
+                const adminView = document.getElementById('adminView');
+                const loginView = document.getElementById('loginView');
 
-            console.log('Guardando actividad:', name);
+                galleryView.classList.remove('active');
+                adminView.classList.remove('active');
+                loginView.classList.remove('active');
 
-            db.collection('actividades').add({
-                name: name,
-                date: date,
-                description: description,
-                driveLink: driveLink,
-                createdBy: currentUser.uid,
-                createdAt: new Date(),
-                photos: []
-            }).then(() => {
-                console.log('✓ Actividad creada');
-                alert('✅ Actividad creada correctamente');
-                document.getElementById('activityName').value = '';
-                document.getElementById('activityDate').value = '';
-                document.getElementById('activityDescription').value = '';
-                document.getElementById('googleDriveLink').value = '';
-                loadActivitiesForAdmin();
-            }).catch(error => {
-                console.error('❌ Error:', error.message);
-                alert('Error: ' + error.message);
-            });
-        }
+                if (currentUser) {
+                    adminView.classList.add('active');
+                } else {
+                    loginView.classList.add('active');
+                }
+            };
 
-        function loadActivitiesForGallery() {
-            console.log('loadActivitiesForGallery()');
-            
-            const filter = document.getElementById('activitiesFilter');
-            const photosGrid = document.getElementById('photosGrid');
-            const emptyState = document.getElementById('emptyState');
+            window.loginWithGoogle = function() {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                auth.signInWithPopup(provider)
+                    .then(result => {
+                        console.log('✓ Login exitoso:', result.user.email);
+                        currentUser = result.user;
+                        updateUI();
+                    })
+                    .catch(error => {
+                        console.error('Error login:', error.message);
+                        alert('Error: ' + error.message);
+                    });
+            };
 
-            db.collection('actividades').orderBy('date', 'desc').onSnapshot(snapshot => {
-                console.log('Actividades encontradas:', snapshot.size);
-                
-                filter.innerHTML = '';
-                photosGrid.innerHTML = '';
+            window.logout = function() {
+                auth.signOut().then(() => {
+                    console.log('✓ Sesión cerrada');
+                    currentUser = null;
+                    document.getElementById('activityName').value = '';
+                    document.getElementById('activityDate').value = '';
+                    document.getElementById('activityDescription').value = '';
+                    document.getElementById('googleDriveLink').value = '';
+                    updateUI();
+                });
+            };
 
-                if (snapshot.empty) {
-                    emptyState.style.display = 'block';
+            window.saveActivity = function(event) {
+                event.preventDefault();
+
+                if (!currentUser) {
+                    alert('Debes iniciar sesión primero');
                     return;
                 }
 
-                emptyState.style.display = 'none';
+                const name = document.getElementById('activityName').value;
+                const date = document.getElementById('activityDate').value;
+                const description = document.getElementById('activityDescription').value;
+                const driveLink = document.getElementById('googleDriveLink').value;
 
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    
-                    // Crear tarjeta de actividad
-                    const card = document.createElement('div');
-                    card.className = 'activity-card';
-                    card.innerHTML = `
-                        <div class="activity-title">${data.name}</div>
-                        <div class="activity-date">📅 ${formatDate(data.date)}</div>
-                        <div class="activity-count">📸 ${data.photos ? data.photos.length : 0} fotos</div>
-                    `;
-                    
-                    card.onclick = () => {
-                        console.log('Seleccionada actividad:', data.name);
-                        document.querySelectorAll('.activity-card').forEach(c => c.classList.remove('selected'));
-                        card.classList.add('selected');
-                        selectedActivityId = doc.id;
-                        showPhotosForActivity(data);
-                    };
-                    
-                    filter.appendChild(card);
-
-                    // Seleccionar la primera actividad automáticamente
-                    if (!selectedActivityId) {
-                        selectedActivityId = doc.id;
-                        card.classList.add('selected');
-                        showPhotosForActivity(data);
-                    }
+                db.collection('actividades').add({
+                    name: name,
+                    date: date,
+                    description: description,
+                    driveLink: driveLink,
+                    createdBy: currentUser.uid,
+                    createdAt: new Date(),
+                    photos: []
+                }).then(() => {
+                    console.log('✓ Actividad creada');
+                    alert('✅ Actividad creada correctamente');
+                    document.getElementById('activityName').value = '';
+                    document.getElementById('activityDate').value = '';
+                    document.getElementById('activityDescription').value = '';
+                    document.getElementById('googleDriveLink').value = '';
+                    loadActivitiesForAdmin(db, currentUser);
+                }).catch(error => {
+                    console.error('Error:', error.message);
+                    alert('Error: ' + error.message);
                 });
-            }, error => {
-                console.error('❌ Error cargando actividades:', error.message);
-            });
-        }
+            };
 
-        function showPhotosForActivity(activityData) {
-            console.log('showPhotosForActivity:', activityData.name);
-            const photosGrid = document.getElementById('photosGrid');
-            photosGrid.innerHTML = `
-                <div class="empty-state" style="grid-column: 1/-1;">
-                    <div class="empty-state-icon">📁</div>
-                    <p><strong>${activityData.name}</strong></p>
-                    <p style="font-size: 12px; margin-top: 10px;">Las fotos se cargan desde Google Drive</p>
-                    <p style="font-size: 11px; color: #999; margin-top: 5px;">Link: ${activityData.driveLink}</p>
-                </div>
-            `;
-        }
+            window.deleteActivity = function(id) {
+                if (confirm('¿Estás seguro?')) {
+                    db.collection('actividades').doc(id).delete().then(() => {
+                        console.log('✓ Eliminada');
+                        alert('✅ Actividad eliminada');
+                        loadActivitiesForAdmin(db, currentUser);
+                    }).catch(error => {
+                        alert('Error: ' + error.message);
+                    });
+                }
+            };
 
-        function loadActivitiesForAdmin() {
-            console.log('loadActivitiesForAdmin()');
-            
-            if (!currentUser) {
-                console.log('Sin usuario autenticado');
-                return;
-            }
+            function loadActivitiesForGallery(db) {
+                const filter = document.getElementById('activitiesFilter');
+                const emptyState = document.getElementById('emptyState');
 
-            const list = document.getElementById('activitiesList');
-
-            db.collection('actividades')
-                .where('createdBy', '==', currentUser.uid)
-                .orderBy('date', 'desc')
-                .onSnapshot(snapshot => {
-                    console.log('Actividades del admin:', snapshot.size);
-                    
-                    list.innerHTML = '';
+                db.collection('actividades').orderBy('date', 'desc').onSnapshot(snapshot => {
+                    filter.innerHTML = '';
 
                     if (snapshot.empty) {
-                        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div><p>No hay actividades aún</p></div>';
+                        emptyState.style.display = 'block';
                         return;
                     }
 
+                    emptyState.style.display = 'none';
+
                     snapshot.forEach(doc => {
                         const data = doc.data();
-                        const item = document.createElement('div');
-                        item.className = 'activity-item';
-                        item.innerHTML = `
-                            <div class="activity-info">
-                                <h3>${data.name}</h3>
-                                <p>📅 ${formatDate(data.date)}</p>
-                                <p>${data.description || 'Sin descripción'}</p>
-                                <p style="color: var(--color-azul); font-size: 12px;">📸 ${data.photos ? data.photos.length : 0} fotos</p>
-                            </div>
-                            <button class="btn-danger" onclick="deleteActivity('${doc.id}')">🗑️ Eliminar</button>
+                        const card = document.createElement('div');
+                        card.className = 'activity-card selected';
+                        card.innerHTML = `
+                            <div class="activity-title">${data.name}</div>
+                            <div class="activity-date">📅 ${formatDate(data.date)}</div>
+                            <div style="font-size: 12px; margin-top: 10px;">📸 ${data.photos ? data.photos.length : 0} fotos</div>
                         `;
-                        list.appendChild(item);
+                        filter.appendChild(card);
                     });
-                }, error => {
-                    console.error('❌ Error cargando actividades:', error.message);
-                });
-        }
-
-        function deleteActivity(id) {
-            console.log('deleteActivity:', id);
-            
-            if (confirm('¿Estás seguro de que quieres eliminar esta actividad?')) {
-                db.collection('actividades').doc(id).delete().then(() => {
-                    console.log('✓ Actividad eliminada');
-                    alert('✅ Actividad eliminada');
-                    loadActivitiesForAdmin();
-                }).catch(error => {
-                    console.error('❌ Error:', error.message);
-                    alert('Error: ' + error.message);
                 });
             }
-        }
 
-        function formatDate(dateStr) {
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateStr).toLocaleDateString('es-ES', options);
-        }
+            function loadActivitiesForAdmin(db, currentUser) {
+                const list = document.getElementById('activitiesList');
 
-        console.log('=== Aplicación lista ===');
+                if (!currentUser) return;
+
+                db.collection('actividades')
+                    .where('createdBy', '==', currentUser.uid)
+                    .orderBy('date', 'desc')
+                    .onSnapshot(snapshot => {
+                        list.innerHTML = '';
+
+                        if (snapshot.empty) {
+                            list.innerHTML = '<div class="empty-state"><div style="font-size: 48px;">📭</div><p>No hay actividades aún</p></div>';
+                            return;
+                        }
+
+                        snapshot.forEach(doc => {
+                            const data = doc.data();
+                            const item = document.createElement('div');
+                            item.className = 'activity-item';
+                            item.innerHTML = `
+                                <div class="activity-info">
+                                    <h3>${data.name}</h3>
+                                    <p>📅 ${formatDate(data.date)}</p>
+                                    <p>${data.description || 'Sin descripción'}</p>
+                                </div>
+                                <button class="btn-danger" onclick="deleteActivity('${doc.id}')">🗑️ Eliminar</button>
+                            `;
+                            list.appendChild(item);
+                        });
+                    });
+            }
+
+            function formatDate(dateStr) {
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return new Date(dateStr).toLocaleDateString('es-ES', options);
+            }
+
+            console.log('✓ Aplicación iniciada correctamente');
+        }
     </script>
 </body>
 </html>
