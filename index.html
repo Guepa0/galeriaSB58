@@ -725,9 +725,8 @@
 
             if (currentUser) {
                 // Usuario autenticado - mostrar admin
-                gallerySection.classList.add('active');
                 gallerySection.classList.remove('active');
-                adminSection.classList.remove('active');
+                adminSection.classList.add('active');
                 loginSection.classList.remove('active');
                 btnAdmin.style.display = 'none';
                 btnLogout.style.display = 'block';
