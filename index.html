@@ -52,11 +52,6 @@
             opacity: 0.9;
         }
 
-        .header-actions {
-            display: flex;
-            gap: 10px;
-        }
-
         .btn-admin {
             background-color: var(--color-amarillo);
             color: var(--color-gris-dark);
@@ -65,11 +60,6 @@
             border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-admin:hover {
-            background-color: #ffb300;
         }
 
         .btn-logout {
@@ -80,10 +70,6 @@
             border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
-        }
-
-        .btn-logout:hover {
-            background-color: rgba(255, 255, 255, 0.3);
         }
 
         .container {
@@ -100,56 +86,11 @@
             display: block;
         }
 
-        .gallery-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--color-verde-oscuro);
-            font-size: 28px;
-        }
-
-        .activities-filter {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .activity-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .activity-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--color-azul);
-        }
-
-        .activity-card.selected {
-            background: linear-gradient(135deg, var(--color-verde-oscuro) 0%, var(--color-verde-claro) 100%);
-            color: white;
-            border-color: var(--color-amarillo);
-        }
-
-        .activity-title {
-            font-size: 18px;
+        .admin-title {
+            font-size: 24px;
             font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .activity-date {
-            font-size: 13px;
-            opacity: 0.7;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
+            color: var(--color-verde-oscuro);
+            margin-bottom: 20px;
         }
 
         .admin-header {
@@ -158,13 +99,6 @@
             border-radius: 12px;
             margin-bottom: 30px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .admin-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--color-verde-oscuro);
-            margin-bottom: 20px;
         }
 
         .form-group {
@@ -183,23 +117,6 @@
             border: 2px solid #ddd;
             border-radius: 8px;
             font-size: 14px;
-            font-family: inherit;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--color-azul);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
         }
 
         .btn-primary {
@@ -210,11 +127,6 @@
             border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 14px;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--color-verde-claro);
         }
 
         .btn-danger {
@@ -227,38 +139,16 @@
             font-size: 13px;
         }
 
-        .btn-danger:hover {
-            background-color: #c0392b;
-        }
-
-        .activities-list {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .activity-item {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .activity-item:last-child {
-            border-bottom: none;
-        }
-
-        .activity-info h3 {
-            color: var(--color-verde-oscuro);
-            margin-bottom: 5px;
-        }
-
-        .activity-info p {
-            font-size: 13px;
-            color: #666;
-            margin: 3px 0;
+        .btn-login {
+            background-color: var(--color-azul);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            width: 100%;
         }
 
         .login-box {
@@ -277,26 +167,10 @@
             font-size: 24px;
         }
 
-        .login-box p {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-
-        .btn-login {
-            background-color: var(--color-azul);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 16px;
-            width: 100%;
-        }
-
-        .btn-login:hover {
-            background-color: #1565c0;
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
         }
 
         .loading {
@@ -305,13 +179,35 @@
             color: #999;
         }
 
+        .activity-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .activities-list {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .activity-info h3 {
+            color: var(--color-verde-oscuro);
+            margin-bottom: 5px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
         @media (max-width: 768px) {
             .form-row {
                 grid-template-columns: 1fr;
-            }
-            .activity-item {
-                flex-direction: column;
-                align-items: flex-start;
             }
         }
     </style>
@@ -323,9 +219,9 @@
                 <h1>🍃 Tropa Taulichusco</h1>
                 <p>San Borja 58 - Limatambo</p>
             </div>
-            <div class="header-actions">
-                <button class="btn-admin" id="btnAdmin" onclick="goToAdmin()">Panel Admin</button>
-                <button class="btn-logout" id="btnLogout" onclick="logout()" style="display: none;">Cerrar Sesión</button>
+            <div>
+                <button class="btn-admin" id="btnAdmin" onclick="window.goToAdmin && window.goToAdmin()">Panel Admin</button>
+                <button class="btn-logout" id="btnLogout" onclick="window.logout && window.logout()" style="display: none;">Cerrar Sesión</button>
             </div>
         </div>
     </header>
@@ -333,37 +229,33 @@
     <div class="container">
         <!-- GALERÍA PÚBLICA -->
         <div class="view active" id="galleryView">
-            <h2 class="gallery-title">📸 Nuestras Actividades</h2>
-            <div class="activities-filter" id="activitiesFilter"></div>
-            <div class="empty-state" id="emptyState">
-                <div style="font-size: 48px; margin-bottom: 20px;">📷</div>
-                <p>Selecciona una actividad para ver las fotos</p>
-            </div>
+            <h2 style="text-align: center; color: var(--color-verde-oscuro); font-size: 28px; margin-bottom: 30px;">📸 Nuestras Actividades</h2>
+            <div id="activitiesFilter"></div>
         </div>
 
         <!-- PANEL ADMIN -->
         <div class="view" id="adminView">
             <div class="admin-header">
                 <div class="admin-title">🔧 Panel de Administración</div>
-                <form onsubmit="saveActivity(event)">
+                <form onsubmit="window.saveActivity && window.saveActivity(event)">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="activityName">Nombre de la Actividad *</label>
+                            <label>Nombre de la Actividad *</label>
                             <input type="text" id="activityName" required placeholder="Ej: Tránsito 2026">
                         </div>
                         <div class="form-group">
-                            <label for="activityDate">Fecha de la Actividad *</label>
+                            <label>Fecha de la Actividad *</label>
                             <input type="date" id="activityDate" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="activityDescription">Descripción</label>
-                        <textarea id="activityDescription" placeholder="Describe brevemente la actividad..."></textarea>
+                        <label>Descripción</label>
+                        <textarea id="activityDescription" placeholder="Describe brevemente..."></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="googleDriveLink">Link de Carpeta Google Drive *</label>
+                        <label>Link de Google Drive *</label>
                         <input type="text" id="googleDriveLink" required placeholder="Ej: https://drive.google.com/drive/folders/1ABC...">
                     </div>
 
@@ -372,9 +264,9 @@
             </div>
 
             <div style="margin-top: 40px;">
-                <h3 style="color: var(--color-verde-oscuro); margin-bottom: 20px; font-size: 20px;">📋 Actividades Existentes</h3>
+                <h3 style="color: var(--color-verde-oscuro); margin-bottom: 20px;">📋 Actividades Existentes</h3>
                 <div class="activities-list" id="activitiesList">
-                    <div class="loading">Cargando actividades...</div>
+                    <div class="loading">Cargando...</div>
                 </div>
             </div>
         </div>
@@ -384,29 +276,29 @@
             <div class="login-box">
                 <div style="font-size: 48px; margin-bottom: 20px;">🔐</div>
                 <h2>Acceso Restringido</h2>
-                <p>Solo administradores pueden acceder al panel de control</p>
-                <button class="btn-login" onclick="loginWithGoogle()">🔑 Iniciar Sesión con Gmail</button>
+                <p>Solo administradores pueden acceder</p>
+                <button class="btn-login" onclick="window.loginWithGoogle && window.loginWithGoogle()">🔑 Iniciar Sesión con Gmail</button>
             </div>
         </div>
     </div>
 
-    <!-- FIREBASE SDK - Cargar PRIMERO -->
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
+    <!-- FIREBASE SDK -->
+    <script async defer src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script async defer src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+    <script async defer src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
 
-    <!-- APLICACIÓN - Ejecutar DESPUÉS -->
     <script>
-        // Esperar a que Firebase esté listo
-        if (typeof firebase === 'undefined') {
-            console.error('Firebase no se cargó correctamente');
-            setTimeout(() => initApp(), 2000);
-        } else {
-            initApp();
+        // Esperar a que todos los scripts carguen
+        function waitForFirebase() {
+            if (typeof firebase !== 'undefined' && firebase.app) {
+                initApp();
+            } else {
+                setTimeout(waitForFirebase, 500);
+            }
         }
 
         function initApp() {
-            console.log('✓ Firebase disponible, inicializando app...');
+            console.log('✓ Firebase listo');
 
             const firebaseConfig = {
                 apiKey: "AIzaSyDI-kro274J6dafEEIVRg9EtM3UF8QOF9g",
@@ -417,15 +309,19 @@
                 appId: "1:367406205049:web:b4f0d31dbc302c210a6ca8"
             };
 
-            firebase.initializeApp(firebaseConfig);
+            try {
+                firebase.initializeApp(firebaseConfig);
+            } catch(e) {
+                console.log('Firebase ya inicializado');
+            }
+
             const auth = firebase.auth();
             const db = firebase.firestore();
 
             let currentUser = null;
 
-            // Monitorear autenticación
-            auth.onAuthStateChanged(function(user) {
-                console.log('Auth state:', user ? user.email : 'sin usuario');
+            auth.onAuthStateChanged(user => {
+                console.log('Auth:', user ? user.email : 'no');
                 currentUser = user;
                 updateUI();
             });
@@ -442,22 +338,24 @@
                 loginView.classList.remove('active');
 
                 if (currentUser) {
+                    console.log('Mostrando admin');
                     adminView.classList.add('active');
                     btnAdmin.style.display = 'none';
                     btnLogout.style.display = 'block';
-                    loadActivitiesForAdmin(db, currentUser);
+                    loadAdminActivities();
                 } else {
+                    console.log('Mostrando galería');
                     galleryView.classList.add('active');
                     btnAdmin.style.display = 'block';
                     btnLogout.style.display = 'none';
-                    loadActivitiesForGallery(db);
+                    loadGalleryActivities();
                 }
             }
 
             window.goToAdmin = function() {
-                const galleryView = document.getElementById('galleryView');
                 const adminView = document.getElementById('adminView');
                 const loginView = document.getElementById('loginView');
+                const galleryView = document.getElementById('galleryView');
 
                 galleryView.classList.remove('active');
                 adminView.classList.remove('active');
@@ -472,37 +370,19 @@
 
             window.loginWithGoogle = function() {
                 const provider = new firebase.auth.GoogleAuthProvider();
-                auth.signInWithPopup(provider)
-                    .then(result => {
-                        console.log('✓ Login exitoso:', result.user.email);
-                        currentUser = result.user;
-                        updateUI();
-                    })
-                    .catch(error => {
-                        console.error('Error login:', error.message);
-                        alert('Error: ' + error.message);
-                    });
+                auth.signInWithPopup(provider).catch(err => alert('Error: ' + err.message));
             };
 
             window.logout = function() {
                 auth.signOut().then(() => {
-                    console.log('✓ Sesión cerrada');
                     currentUser = null;
-                    document.getElementById('activityName').value = '';
-                    document.getElementById('activityDate').value = '';
-                    document.getElementById('activityDescription').value = '';
-                    document.getElementById('googleDriveLink').value = '';
                     updateUI();
                 });
             };
 
-            window.saveActivity = function(event) {
-                event.preventDefault();
-
-                if (!currentUser) {
-                    alert('Debes iniciar sesión primero');
-                    return;
-                }
+            window.saveActivity = function(e) {
+                e.preventDefault();
+                if (!currentUser) return alert('No autenticado');
 
                 const name = document.getElementById('activityName').value;
                 const date = document.getElementById('activityDate').value;
@@ -510,107 +390,80 @@
                 const driveLink = document.getElementById('googleDriveLink').value;
 
                 db.collection('actividades').add({
-                    name: name,
-                    date: date,
-                    description: description,
-                    driveLink: driveLink,
+                    name, date, description, driveLink,
                     createdBy: currentUser.uid,
-                    createdAt: new Date(),
-                    photos: []
+                    createdAt: new Date()
                 }).then(() => {
-                    console.log('✓ Actividad creada');
-                    alert('✅ Actividad creada correctamente');
+                    alert('✅ Creada');
                     document.getElementById('activityName').value = '';
                     document.getElementById('activityDate').value = '';
                     document.getElementById('activityDescription').value = '';
                     document.getElementById('googleDriveLink').value = '';
-                    loadActivitiesForAdmin(db, currentUser);
-                }).catch(error => {
-                    console.error('Error:', error.message);
-                    alert('Error: ' + error.message);
-                });
+                    loadAdminActivities();
+                }).catch(e => alert('Error: ' + e.message));
             };
 
             window.deleteActivity = function(id) {
-                if (confirm('¿Estás seguro?')) {
+                if (confirm('¿Eliminar?')) {
                     db.collection('actividades').doc(id).delete().then(() => {
-                        console.log('✓ Eliminada');
-                        alert('✅ Actividad eliminada');
-                        loadActivitiesForAdmin(db, currentUser);
-                    }).catch(error => {
-                        alert('Error: ' + error.message);
+                        alert('✅ Eliminada');
+                        loadAdminActivities();
                     });
                 }
             };
 
-            function loadActivitiesForGallery(db) {
-                const filter = document.getElementById('activitiesFilter');
-                const emptyState = document.getElementById('emptyState');
-
-                db.collection('actividades').orderBy('date', 'desc').onSnapshot(snapshot => {
+            function loadGalleryActivities() {
+                db.collection('actividades').orderBy('date', 'desc').onSnapshot(snap => {
+                    const filter = document.getElementById('activitiesFilter');
                     filter.innerHTML = '';
-
-                    if (snapshot.empty) {
-                        emptyState.style.display = 'block';
+                    if (snap.empty) {
+                        filter.innerHTML = '<div class="empty-state">📭 Sin actividades</div>';
                         return;
                     }
-
-                    emptyState.style.display = 'none';
-
-                    snapshot.forEach(doc => {
+                    snap.forEach(doc => {
                         const data = doc.data();
                         const card = document.createElement('div');
-                        card.className = 'activity-card selected';
-                        card.innerHTML = `
-                            <div class="activity-title">${data.name}</div>
-                            <div class="activity-date">📅 ${formatDate(data.date)}</div>
-                            <div style="font-size: 12px; margin-top: 10px;">📸 ${data.photos ? data.photos.length : 0} fotos</div>
-                        `;
+                        card.style.cssText = 'background: white; padding: 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);';
+                        card.innerHTML = `<strong>${data.name}</strong><br>📅 ${formatDate(data.date)}`;
                         filter.appendChild(card);
                     });
                 });
             }
 
-            function loadActivitiesForAdmin(db, currentUser) {
-                const list = document.getElementById('activitiesList');
-
+            function loadAdminActivities() {
                 if (!currentUser) return;
-
-                db.collection('actividades')
-                    .where('createdBy', '==', currentUser.uid)
-                    .orderBy('date', 'desc')
-                    .onSnapshot(snapshot => {
-                        list.innerHTML = '';
-
-                        if (snapshot.empty) {
-                            list.innerHTML = '<div class="empty-state"><div style="font-size: 48px;">📭</div><p>No hay actividades aún</p></div>';
-                            return;
-                        }
-
-                        snapshot.forEach(doc => {
-                            const data = doc.data();
-                            const item = document.createElement('div');
-                            item.className = 'activity-item';
-                            item.innerHTML = `
-                                <div class="activity-info">
-                                    <h3>${data.name}</h3>
-                                    <p>📅 ${formatDate(data.date)}</p>
-                                    <p>${data.description || 'Sin descripción'}</p>
-                                </div>
-                                <button class="btn-danger" onclick="deleteActivity('${doc.id}')">🗑️ Eliminar</button>
-                            `;
-                            list.appendChild(item);
-                        });
+                const list = document.getElementById('activitiesList');
+                db.collection('actividades').where('createdBy', '==', currentUser.uid).orderBy('date', 'desc').onSnapshot(snap => {
+                    list.innerHTML = '';
+                    if (snap.empty) {
+                        list.innerHTML = '<div class="empty-state">📭 Sin actividades</div>';
+                        return;
+                    }
+                    snap.forEach(doc => {
+                        const data = doc.data();
+                        const item = document.createElement('div');
+                        item.className = 'activity-item';
+                        item.innerHTML = `
+                            <div class="activity-info">
+                                <h3>${data.name}</h3>
+                                <p>📅 ${formatDate(data.date)}</p>
+                            </div>
+                            <button class="btn-danger" onclick="window.deleteActivity('${doc.id}')">🗑️</button>
+                        `;
+                        list.appendChild(item);
                     });
+                });
             }
 
-            function formatDate(dateStr) {
-                const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                return new Date(dateStr).toLocaleDateString('es-ES', options);
+            function formatDate(d) {
+                return new Date(d).toLocaleDateString('es-ES', {year: 'numeric', month: 'long', day: 'numeric'});
             }
 
-            console.log('✓ Aplicación iniciada correctamente');
+            console.log('✓ App inicializada');
         }
+
+        // Iniciar cuando carguen los scripts
+        waitForFirebase();
     </script>
 </body>
 </html>
