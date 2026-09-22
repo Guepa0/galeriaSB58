@@ -6,20 +6,9 @@
     <title>Tropa Taulichusco San Borja 58</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --verde: #1aa832;
-            --azul: #1e88e5;
-            --amarillo: #ffc107;
-        }
+        :root { --verde: #1aa832; --azul: #1e88e5; --amarillo: #ffc107; }
         body { font-family: Arial, sans-serif; background: #f5f5f5; }
-        header {
-            background: linear-gradient(135deg, var(--verde) 0%, #2d8e3e 100%);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        header { background: linear-gradient(135deg, var(--verde) 0%, #2d8e3e 100%); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
         header h1 { font-size: 28px; }
         header p { font-size: 14px; opacity: 0.9; }
         .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
@@ -59,13 +48,11 @@
     </header>
 
     <div class="container">
-        <!-- GALERÍA -->
         <div class="view active" id="gallery">
             <h2 style="text-align:center; color:var(--verde); margin-bottom:30px;">📸 Nuestras Actividades</h2>
             <div id="galleryList"></div>
         </div>
 
-        <!-- ADMIN -->
         <div class="view" id="admin">
             <div class="admin-box">
                 <div class="admin-title">🔧 Panel de Administración</div>
@@ -98,7 +85,6 @@
             </div>
         </div>
 
-        <!-- LOGIN -->
         <div class="view" id="login">
             <div class="login-box">
                 <div style="font-size:48px; margin-bottom:20px;">🔐</div>
@@ -118,13 +104,16 @@
 
         let db, auth, currentUser = null;
 
-        // Esperar Firebase
-        let fbCheck = setInterval(() => {
-            if (window.firebase && firebase.app) {
-                clearInterval(fbCheck);
+        function checkFirebase() {
+            console.log('Verificando Firebase...');
+            if (window.firebase !== undefined && firebase.apps !== undefined) {
+                console.log('✓ Firebase encontrado, inicializando...');
                 initFirebase();
+            } else {
+                console.log('Firebase aún no disponible, esperando...');
+                setTimeout(checkFirebase, 500);
             }
-        }, 100);
+        }
 
         function initFirebase() {
             console.log('✓ Firebase disponible');
@@ -138,23 +127,33 @@
                 appId: "1:367406205049:web:b4f0d31dbc302c210a6ca8"
             };
 
-            if (!firebase.apps.length) {
-                firebase.initializeApp(config);
+            try {
+                if (!firebase.apps.length) {
+                    firebase.initializeApp(config);
+                    console.log('✓ Firebase inicializado (nuevo)');
+                } else {
+                    console.log('✓ Firebase ya estaba inicializado');
+                }
+            } catch(e) {
+                console.error('Error Firebase init:', e);
+                return;
             }
 
             auth = firebase.auth();
             db = firebase.firestore();
+            console.log('✓ Auth y DB configurados');
 
             auth.onAuthStateChanged(user => {
-                console.log('Auth cambió:', user ? user.email : 'no');
+                console.log('Auth cambió:', user ? user.email : 'no autenticado');
                 currentUser = user;
                 updateUI();
             });
 
-            console.log('✓ Firebase listo');
+            console.log('✓ Firebase completamente listo');
         }
 
         function updateUI() {
+            console.log('updateUI() - User:', currentUser ? currentUser.email : 'ninguno');
             const gallery = document.getElementById('gallery');
             const admin = document.getElementById('admin');
             const login = document.getElementById('login');
@@ -166,7 +165,7 @@
             login.classList.remove('active');
 
             if (currentUser) {
-                console.log('Mostrando admin para:', currentUser.email);
+                console.log('Mostrando admin');
                 admin.classList.add('active');
                 btnAdmin.style.display = 'none';
                 btnLogout.style.display = 'block';
@@ -181,7 +180,7 @@
         }
 
         function goAdmin() {
-            console.log('goAdmin() - user:', currentUser ? currentUser.email : 'no');
+            console.log('goAdmin() - currentUser:', currentUser ? currentUser.email : 'ninguno');
             
             if (currentUser) {
                 document.getElementById('gallery').classList.remove('active');
@@ -195,22 +194,30 @@
         }
 
         function loginGoogle() {
-            console.log('loginGoogle()');
+            console.log('loginGoogle() - auth disponible?', !!auth);
             if (!auth) {
-                alert('Firebase no está listo aún');
+                console.error('Firebase aún no inicializado');
+                alert('Firebase no está listo. Intenta nuevamente en un momento.');
                 return;
             }
             const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider).catch(e => alert('Error: ' + e.message));
+            auth.signInWithPopup(provider).catch(e => {
+                console.error('Error login:', e);
+                alert('Error: ' + e.message);
+            });
         }
 
         function logout() {
-            auth.signOut();
+            if (auth) {
+                auth.signOut().then(() => {
+                    console.log('Sesión cerrada');
+                });
+            }
         }
 
         function createActivity(e) {
             e.preventDefault();
-            if (!currentUser) return;
+            if (!currentUser) return alert('No autenticado');
 
             const name = document.getElementById('name').value;
             const date = document.getElementById('date').value;
@@ -228,7 +235,10 @@
                 document.getElementById('desc').value = '';
                 document.getElementById('drive').value = '';
                 loadAdmin();
-            }).catch(e => alert('Error: ' + e.message));
+            }).catch(e => {
+                console.error('Error crear:', e);
+                alert('Error: ' + e.message);
+            });
         }
 
         function deleteActivity(id) {
@@ -236,14 +246,19 @@
                 db.collection('actividades').doc(id).delete().then(() => {
                     alert('✅ Eliminada');
                     loadAdmin();
-                });
+                }).catch(e => alert('Error: ' + e.message));
             }
         }
 
         function loadGallery() {
-            if (!db) return;
+            if (!db) {
+                console.log('DB no disponible aún');
+                return;
+            }
+            console.log('loadGallery()');
             const list = document.getElementById('galleryList');
             db.collection('actividades').orderBy('date', 'desc').onSnapshot(snap => {
+                console.log('Snapshot galería:', snap.size, 'docs');
                 list.innerHTML = '';
                 if (snap.empty) {
                     list.innerHTML = '<div class="empty">📭 Sin actividades</div>';
@@ -256,16 +271,21 @@
                     div.innerHTML = `<strong>${d.name}</strong><br>📅 ${new Date(d.date).toLocaleDateString('es-ES')}`;
                     list.appendChild(div);
                 });
-            });
+            }, err => console.error('Error galería:', err));
         }
 
         function loadAdmin() {
-            if (!currentUser || !db) return;
+            if (!currentUser || !db) {
+                console.log('Admin: user o db no disponible');
+                return;
+            }
+            console.log('loadAdmin()');
             const list = document.getElementById('adminList');
             db.collection('actividades')
                 .where('createdBy', '==', currentUser.uid)
                 .orderBy('date', 'desc')
                 .onSnapshot(snap => {
+                    console.log('Snapshot admin:', snap.size, 'docs');
                     list.innerHTML = '';
                     if (snap.empty) {
                         list.innerHTML = '<div class="empty">📭 Sin actividades</div>';
@@ -284,10 +304,11 @@
                         `;
                         list.appendChild(div);
                     });
-                });
+                }, err => console.error('Error admin:', err));
         }
 
-        console.log('✓ Script cargado');
+        console.log('✓ Script cargado, esperando Firebase...');
+        setTimeout(checkFirebase, 1000);
     </script>
 </body>
 </html>
