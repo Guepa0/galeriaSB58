@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tropa Taulichusco San Borja 58 - Galería</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-verde-oscuro: #1aa832;
+            --color-verde-claro: #2d8e3e;
+            --color-azul: #1e88e5;
+            --color-amarillo: #ffc107;
+            --color-blanco: #ffffff;
+            --color-gris-light: #f5f5f5;
+            --color-gris-dark: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-gris-light);
+            color: var(--color-gris-dark);
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--color-verde-oscuro) 0%, var(--color-verde-claro) 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .header-text h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .header-text p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-admin {
+            background-color: var(--color-amarillo);
+            color: var(--color-gris-dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-admin:hover {
+            background-color: #ffb300;
+            transform: translateY(-2px);
+        }
+
+        .btn-logout {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* MAIN CONTENT */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* GALERÍA PÚBLICA */
+        .gallery-section {
+            display: none;
+        }
+
+        .gallery-section.active {
+            display: block;
+        }
+
+        .activities-filter {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-azul);
+            box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+        }
+
+        .activity-card.selected {
+            background: linear-gradient(135deg, var(--color-verde-oscuro) 0%, var(--color-verde-claro) 100%);
+            color: white;
+            border-color: var(--color-amarillo);
+        }
+
+        .activity-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .activity-date {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .activity-count {
+            font-size: 12px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-card.selected .activity-count {
+            border-top-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* GALERÍA DE FOTOS */
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: white;
+            aspect-ratio: 1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo-item img,
+        .photo-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            color: white;
+            font-size: 48px;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-media {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .lightbox-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1001;
+        }
+
+        .btn-lightbox {
+            background-color: var(--color-verde-oscuro);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-lightbox:hover {
+            background-color: var(--color-verde-claro);
+            transform: scale(1.05);
+        }
+
+        /* PANEL ADMIN */
+        .admin-section {
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .admin-header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--color-verde-oscuro);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--color-gris-dark);
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--color-azul);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-verde-oscuro);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-verde-claro);
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-edit {
+            background-color: var(--color-azul);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit:hover {
+            background-color: #1565c0;
+        }
+
+        /* LISTADO DE ACTIVIDADES */
+        .activities-list {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .activity-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-info h3 {
+            color: var(--color-verde-oscuro);
+            margin-bottom: 5px;
+        }
+
+        .activity-info p {
+            font-size: 13px;
+            color: #666;
+            margin: 3px 0;
+        }
+
+        .activity-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* LOGIN */
+        .login-section {
+            display: none;
+        }
+
+        .login-section.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .login-box h2 {
+            color: var(--color-verde-oscuro);
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .login-box p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .btn-login {
+            background-color: var(--color-azul);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-login:hover {
+            background-color: #1565c0;
+            transform: translateY(-2px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-text h1 {
+                font-size: 22px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .activity-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .activity-actions {
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            .photos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        /* MENSAJES */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--color-azul);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABwgAAAX8CAYAAAAxD9+gAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABMZBJREFUeNrs3T9229a6N2DkrNsffgXqw7RszDsCwyMwzwjMjCBKgdpOzcLxCCSPwMoIxIzASoPWTM3i6IzgftgmFEsyKREU/wB7P89a" alt="Logo SanBorja58" class="logo-img" style="display: none;">
+                <div class="header-text">
+                    <h1>Tropa Taulichusco</h1>
+                    <p>San Borja 58 - Limatambo</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-admin" id="btnAdmin" onclick="goToAdmin()">Panel Admin</button>
+                <button class="btn-logout" id="btnLogout" onclick="logout()" style="display: none;">Cerrar Sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- GALERÍA PÚBLICA -->
+        <div class="gallery-section active" id="gallerySection">
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--color-verde-oscuro); font-size: 28px;">
+                📸 Nuestras Actividades
+            </h2>
+
+            <div class="activities-filter" id="activitiesFilter">
+                <!-- Se llena dinámicamente -->
+            </div>
+
+            <div class="photos-grid" id="photosGrid">
+                <!-- Se llena dinámicamente -->
+            </div>
+
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-state-icon">📷</div>
+                <p>Selecciona una actividad para ver las fotos</p>
+            </div>
+        </div>
+
+        <!-- LIGHTBOX -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-content">
+                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                <img id="lightboxImg" class="lightbox-media" style="display: none;">
+                <video id="lightboxVideo" class="lightbox-media" style="display: none;" controls></video>
+                <div class="lightbox-controls">
+                    <button class="btn-lightbox" onclick="downloadMedia()">⬇️ Descargar</button>
+                    <button class="btn-lightbox" onclick="closeLightbox()">Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL ADMIN -->
+        <div class="admin-section" id="adminSection">
+            <div class="admin-header">
+                <div class="admin-title">🔧 Panel de Administración</div>
+
+                <!-- FORMULARIO -->
+                <form onsubmit="saveActivity(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="activityName">Nombre de la Actividad *</label>
+                            <input type="text" id="activityName" required placeholder="Ej: Tránsito 2026">
+                        </div>
+                        <div class="form-group">
+                            <label for="activityDate">Fecha de la Actividad *</label>
+                            <input type="date" id="activityDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="activityDescription">Descripción</label>
+                        <textarea id="activityDescription" placeholder="Describe brevemente la actividad..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="googleDriveLink">Link de Carpeta Google Drive *</label>
+                        <input type="text" id="googleDriveLink" required placeholder="Ej: https://drive.google.com/drive/folders/1ABC...">
+                        <small style="color: #666; display: block; margin-top: 8px;">
+                            📌 Tip: Comparte la carpeta con permisos de lectura y copia el link aquí
+                        </small>
+                    </div>
+
+                    <button type="submit" class="btn-primary">✅ Crear Actividad</button>
+                </form>
+            </div>
+
+            <!-- LISTADO DE ACTIVIDADES -->
+            <div style="margin-top: 40px;">
+                <h3 style="color: var(--color-verde-oscuro); margin-bottom: 20px; font-size: 20px;">📋 Actividades Existentes</h3>
+                <div class="activities-list" id="activitiesList">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Cargando actividades...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="login-section" id="loginSection">
+            <div class="login-box">
+                <div style="font-size: 48px; margin-bottom: 20px;">🔐</div>
+                <h2>Acceso Restringido</h2>
+                <p>Solo administradores pueden acceder al panel de control</p>
+                <button class="btn-login" onclick="loginWithGoogle()">🔑 Iniciar Sesión con Gmail</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FIREBASE SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
+
+    <script>
+        // CONFIGURACIÓN FIREBASE
+        const firebaseConfig = {
+            apiKey: "AIzaSyDI-kro274J6dafEEIVRg9EtM3UF8QOF9g",
+            authDomain: "galeriasb58.firebaseapp.com",
+            projectId: "galeriasb58",
+            storageBucket: "galeriasb58.firebaseapp.storage",
+            messagingSenderId: "367406205049",
+            appId: "1:367406205049:web:b4f0d31dbc302c210a6ca8"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let currentUser = null;
+        let selectedActivityId = null;
+
+        // ESTADO DE SESIÓN
+        auth.onAuthStateChanged(user => {
+            currentUser = user;
+            updateUIState();
+        });
+
+        function updateUIState() {
+            const gallerySection = document.getElementById('gallerySection');
+            const adminSection = document.getElementById('adminSection');
+            const loginSection = document.getElementById('loginSection');
+            const btnAdmin = document.getElementById('btnAdmin');
+            const btnLogout = document.getElementById('btnLogout');
+
+            if (currentUser) {
+                // Usuario autenticado - mostrar admin
+                gallerySection.classList.add('active');
+                gallerySection.classList.remove('active');
+                adminSection.classList.remove('active');
+                loginSection.classList.remove('active');
+                btnAdmin.style.display = 'none';
+                btnLogout.style.display = 'block';
+                loadActivitiesForAdmin();
+            } else {
+                // Usuario no autenticado - mostrar galería
+                gallerySection.classList.add('active');
+                adminSection.classList.remove('active');
+                loginSection.classList.remove('active');
+                btnAdmin.style.display = 'block';
+                btnLogout.style.display = 'none';
+                loadActivitiesForGallery();
+            }
+        }
+
+        function goToAdmin() {
+            if (currentUser) {
+                document.getElementById('gallerySection').classList.remove('active');
+                document.getElementById('adminSection').classList.add('active');
+            } else {
+                document.getElementById('gallerySection').classList.remove('active');
+                document.getElementById('loginSection').classList.add('active');
+            }
+        }
+
+        function loginWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then(result => {
+                    currentUser = result.user;
+                    updateUIState();
+                })
+                .catch(error => {
+                    alert('Error al iniciar sesión: ' + error.message);
+                });
+        }
+
+        function logout() {
+            auth.signOut().then(() => {
+                currentUser = null;
+                document.getElementById('activityName').value = '';
+                document.getElementById('activityDate').value = '';
+                document.getElementById('activityDescription').value = '';
+                document.getElementById('googleDriveLink').value = '';
+                updateUIState();
+            });
+        }
+
+        function saveActivity(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('activityName').value;
+            const date = document.getElementById('activityDate').value;
+            const description = document.getElementById('activityDescription').value;
+            const driveLink = document.getElementById('googleDriveLink').value;
+
+            if (!currentUser) {
+                alert('Debes iniciar sesión primero');
+                return;
+            }
+
+            db.collection('actividades').add({
+                name: name,
+                date: date,
+                description: description,
+                driveLink: driveLink,
+                createdBy: currentUser.uid,
+                createdAt: new Date(),
+                photos: []
+            }).then(() => {
+                alert('✅ Actividad creada correctamente');
+                document.getElementById('activityName').value = '';
+                document.getElementById('activityDate').value = '';
+                document.getElementById('activityDescription').value = '';
+                document.getElementById('googleDriveLink').value = '';
+                loadActivitiesForAdmin();
+            }).catch(error => {
+                alert('Error: ' + error.message);
+            });
+        }
+
+        function loadActivitiesForGallery() {
+            const filter = document.getElementById('activitiesFilter');
+            const photosGrid = document.getElementById('photosGrid');
+
+            db.collection('actividades').orderBy('date', 'desc').onSnapshot(snapshot => {
+                filter.innerHTML = '';
+                photosGrid.innerHTML = '';
+
+                if (snapshot.empty) {
+                    document.getElementById('emptyState').style.display = 'block';
+                    return;
+                }
+
+                document.getElementById('emptyState').style.display = 'none';
+
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const card = document.createElement('div');
+                    card.className = 'activity-card';
+                    card.innerHTML = `
+                        <div class="activity-title">${data.name}</div>
+                        <div class="activity-date">📅 ${formatDate(data.date)}</div>
+                        <div class="activity-count">📸 ${data.photos ? data.photos.length : 0} fotos</div>
+                    `;
+                    card.onclick = () => selectActivityForGallery(doc.id, data);
+                    filter.appendChild(card);
+
+                    if (!selectedActivityId) {
+                        selectedActivityId = doc.id;
+                        card.classList.add('selected');
+                        loadPhotosForGallery(data);
+                    }
+                });
+            });
+        }
+
+        function loadActivitiesForAdmin() {
+            const list = document.getElementById('activitiesList');
+
+            db.collection('actividades')
+                .where('createdBy', '==', currentUser.uid)
+                .orderBy('date', 'desc')
+                .onSnapshot(snapshot => {
+                    list.innerHTML = '';
+
+                    if (snapshot.empty) {
+                        list.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📭</div><p>No hay actividades aún</p></div>';
+                        return;
+                    }
+
+                    snapshot.forEach(doc => {
+                        const data = doc.data();
+                        const item = document.createElement('div');
+                        item.className = 'activity-item';
+                        item.innerHTML = `
+                            <div class="activity-info">
+                                <h3>${data.name}</h3>
+                                <p>📅 ${formatDate(data.date)}</p>
+                                <p>${data.description || 'Sin descripción'}</p>
+                                <p style="color: var(--color-azul); font-size: 12px;">📸 ${data.photos ? data.photos.length : 0} fotos</p>
+                            </div>
+                            <div class="activity-actions">
+                                <button class="btn-edit" onclick="editActivity('${doc.id}')">✏️ Editar</button>
+                                <button class="btn-danger" onclick="deleteActivity('${doc.id}')">🗑️ Eliminar</button>
+                            </div>
+                        `;
+                        list.appendChild(item);
+                    });
+                });
+        }
+
+        function selectActivityForGallery(id, data) {
+            selectedActivityId = id;
+            document.querySelectorAll('.activity-card').forEach(card => card.classList.remove('selected'));
+            event.target.closest('.activity-card').classList.add('selected');
+            loadPhotosForGallery(data);
+        }
+
+        function loadPhotosForGallery(activityData) {
+            const photosGrid = document.getElementById('photosGrid');
+            photosGrid.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando fotos...</div>';
+
+            // Aquí iría la integración con Google Drive
+            // Por ahora mostramos un mensaje
+            photosGrid.innerHTML = `
+                <div class="empty-state" style="grid-column: 1/-1;">
+                    <div class="empty-state-icon">🔗</div>
+                    <p>Las fotos se cargarán desde Google Drive</p>
+                    <p style="font-size: 12px; margin-top: 10px;">Link: ${activityData.driveLink}</p>
+                </div>
+            `;
+        }
+
+        function openLightbox(src, type = 'image') {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            const video = document.getElementById('lightboxVideo');
+
+            if (type === 'video') {
+                img.style.display = 'none';
+                video.style.display = 'block';
+                video.src = src;
+            } else {
+                img.style.display = 'block';
+                video.style.display = 'none';
+                img.src = src;
+            }
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function downloadMedia() {
+            const img = document.getElementById('lightboxImg');
+            const video = document.getElementById('lightboxVideo');
+            const link = document.createElement('a');
+
+            if (img.style.display !== 'none') {
+                link.href = img.src;
+                link.download = 'foto_' + Date.now() + '.jpg';
+            } else {
+                link.href = video.src;
+                link.download = 'video_' + Date.now() + '.mp4';
+            }
+
+            link.click();
+        }
+
+        function editActivity(id) {
+            alert('Función de editar en desarrollo. Por ahora elimina y crea una nueva.');
+        }
+
+        function deleteActivity(id) {
+            if (confirm('¿Estás seguro de que quieres eliminar esta actividad?')) {
+                db.collection('actividades').doc(id).delete().then(() => {
+                    alert('✅ Actividad eliminada');
+                    loadActivitiesForAdmin();
+                }).catch(error => {
+                    alert('Error: ' + error.message);
+                });
+            }
+        }
+
+        function formatDate(dateStr) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateStr).toLocaleDateString('es-ES', options);
+        }
+
+        // Tecla ESC para cerrar lightbox
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Inicializar
+        updateUIState();
+    </script>
+</body>
+</html>
