@@ -3,304 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tropa Taulichusco San Borja 58 - Galería</title>
+    <title>Tropa Taulichusco San Borja 58</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --color-verde-oscuro: #1aa832;
-            --color-verde-claro: #2d8e3e;
-            --color-azul: #1e88e5;
-            --color-amarillo: #ffc107;
-            --color-gris-light: #f5f5f5;
-            --color-gris-dark: #333333;
+            --verde: #1aa832;
+            --azul: #1e88e5;
+            --amarillo: #ffc107;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--color-gris-light);
-            color: var(--color-gris-dark);
-        }
-
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }
         header {
-            background: linear-gradient(135deg, var(--color-verde-oscuro) 0%, var(--color-verde-claro) 100%);
+            background: linear-gradient(135deg, var(--verde) 0%, #2d8e3e 100%);
             color: white;
             padding: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .header-text h1 {
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .header-text p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .btn-admin {
-            background-color: var(--color-amarillo);
-            color: var(--color-gris-dark);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .btn-logout {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .view {
-            display: none;
-        }
-
-        .view.active {
-            display: block;
-        }
-
-        .admin-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--color-verde-oscuro);
-            margin-bottom: 20px;
-        }
-
-        .admin-header {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        .btn-primary {
-            background-color: var(--color-verde-oscuro);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .btn-danger {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        .btn-login {
-            background-color: var(--color-azul);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 16px;
-            width: 100%;
-        }
-
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 400px;
-            margin: 60px auto;
-        }
-
-        .login-box h2 {
-            color: var(--color-verde-oscuro);
-            margin-bottom: 30px;
-            font-size: 24px;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #999;
-        }
-
-        .activity-item {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        .activities-list {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .activity-info h3 {
-            color: var(--color-verde-oscuro);
-            margin-bottom: 5px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
+        header h1 { font-size: 28px; }
+        header p { font-size: 14px; opacity: 0.9; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer; font-weight: 600; }
+        .btn-yellow { background: var(--amarillo); color: #333; }
+        .btn-red { background: #e74c3c; color: white; }
+        .btn-blue { background: var(--azul); color: white; width: 100%; padding: 15px; font-size: 16px; }
+        .view { display: none; }
+        .view.active { display: block; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; }
+        input, textarea { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 14px; }
+        input:focus, textarea:focus { outline: none; border-color: var(--azul); }
+        .btn-green { background: var(--verde); color: white; padding: 12px 30px; border-radius: 25px; border: none; cursor: pointer; font-weight: 600; }
+        .login-box { background: white; padding: 40px; border-radius: 12px; text-align: center; max-width: 400px; margin: 60px auto; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .login-box h2 { color: var(--verde); margin-bottom: 30px; }
+        .admin-box { background: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .admin-title { font-size: 24px; color: var(--verde); margin-bottom: 20px; font-weight: bold; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .activity-item { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .activity-item h3 { color: var(--verde); }
+        .activity-list { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .empty { text-align: center; padding: 60px 20px; color: #999; }
+        @media (max-width: 768px) { .form-row { grid-template-columns: 1fr; } header { flex-direction: column; gap: 15px; } }
     </style>
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <div class="header-text">
-                <h1>🍃 Tropa Taulichusco</h1>
-                <p>San Borja 58 - Limatambo</p>
-            </div>
-            <div>
-                <button class="btn-admin" id="btnAdmin" onclick="window.goToAdmin && window.goToAdmin()">Panel Admin</button>
-                <button class="btn-logout" id="btnLogout" onclick="window.logout && window.logout()" style="display: none;">Cerrar Sesión</button>
-            </div>
+        <div>
+            <h1>🍃 Tropa Taulichusco</h1>
+            <p>San Borja 58 - Limatambo</p>
+        </div>
+        <div>
+            <button class="btn btn-yellow" id="btnAdmin" onclick="goAdmin()">Panel Admin</button>
+            <button class="btn btn-red" id="btnLogout" onclick="logout()" style="display:none; margin-left:10px;">Cerrar</button>
         </div>
     </header>
 
     <div class="container">
-        <!-- GALERÍA PÚBLICA -->
-        <div class="view active" id="galleryView">
-            <h2 style="text-align: center; color: var(--color-verde-oscuro); font-size: 28px; margin-bottom: 30px;">📸 Nuestras Actividades</h2>
-            <div id="activitiesFilter"></div>
+        <!-- GALERÍA -->
+        <div class="view active" id="gallery">
+            <h2 style="text-align:center; color:var(--verde); margin-bottom:30px;">📸 Nuestras Actividades</h2>
+            <div id="galleryList"></div>
         </div>
 
-        <!-- PANEL ADMIN -->
-        <div class="view" id="adminView">
-            <div class="admin-header">
+        <!-- ADMIN -->
+        <div class="view" id="admin">
+            <div class="admin-box">
                 <div class="admin-title">🔧 Panel de Administración</div>
-                <form onsubmit="window.saveActivity && window.saveActivity(event)">
+                <form onsubmit="createActivity(event)">
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Nombre de la Actividad *</label>
-                            <input type="text" id="activityName" required placeholder="Ej: Tránsito 2026">
+                            <label>Nombre de Actividad *</label>
+                            <input type="text" id="name" required placeholder="Ej: Tránsito 2026">
                         </div>
                         <div class="form-group">
-                            <label>Fecha de la Actividad *</label>
-                            <input type="date" id="activityDate" required>
+                            <label>Fecha *</label>
+                            <input type="date" id="date" required>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label>Descripción</label>
-                        <textarea id="activityDescription" placeholder="Describe brevemente..."></textarea>
+                        <textarea id="desc" placeholder="..."></textarea>
                     </div>
-
                     <div class="form-group">
-                        <label>Link de Google Drive *</label>
-                        <input type="text" id="googleDriveLink" required placeholder="Ej: https://drive.google.com/drive/folders/1ABC...">
+                        <label>Link Google Drive *</label>
+                        <input type="text" id="drive" required placeholder="https://drive.google.com/drive/folders/...">
                     </div>
-
-                    <button type="submit" class="btn-primary">✅ Crear Actividad</button>
+                    <button type="submit" class="btn-green">✅ Crear Actividad</button>
                 </form>
             </div>
 
-            <div style="margin-top: 40px;">
-                <h3 style="color: var(--color-verde-oscuro); margin-bottom: 20px;">📋 Actividades Existentes</h3>
-                <div class="activities-list" id="activitiesList">
-                    <div class="loading">Cargando...</div>
-                </div>
+            <div>
+                <h3 style="color:var(--verde); margin-bottom:20px;">📋 Actividades</h3>
+                <div class="activity-list" id="adminList"><div class="empty">Cargando...</div></div>
             </div>
         </div>
 
         <!-- LOGIN -->
-        <div class="view" id="loginView">
+        <div class="view" id="login">
             <div class="login-box">
-                <div style="font-size: 48px; margin-bottom: 20px;">🔐</div>
+                <div style="font-size:48px; margin-bottom:20px;">🔐</div>
                 <h2>Acceso Restringido</h2>
                 <p>Solo administradores pueden acceder</p>
-                <button class="btn-login" onclick="window.loginWithGoogle && window.loginWithGoogle()">🔑 Iniciar Sesión con Gmail</button>
+                <button class="btn-blue" onclick="loginGoogle()">🔑 Iniciar Sesión con Gmail</button>
             </div>
         </div>
     </div>
 
-    <!-- FIREBASE SDK -->
-    <script async defer src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
-    <script async defer src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
-    <script async defer src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
 
     <script>
-        // Esperar a que todos los scripts carguen
-        function waitForFirebase() {
-            if (typeof firebase !== 'undefined' && firebase.app) {
-                initApp();
-            } else {
-                setTimeout(waitForFirebase, 500);
+        console.log('🚀 Script iniciando...');
+
+        let db, auth, currentUser = null;
+
+        // Esperar Firebase
+        let fbCheck = setInterval(() => {
+            if (window.firebase && firebase.app) {
+                clearInterval(fbCheck);
+                initFirebase();
             }
-        }
+        }, 100);
 
-        function initApp() {
-            console.log('✓ Firebase listo');
-
-            const firebaseConfig = {
+        function initFirebase() {
+            console.log('✓ Firebase disponible');
+            
+            const config = {
                 apiKey: "AIzaSyDI-kro274J6dafEEIVRg9EtM3UF8QOF9g",
                 authDomain: "galeriasb58.firebaseapp.com",
                 projectId: "galeriasb58",
@@ -309,161 +138,156 @@
                 appId: "1:367406205049:web:b4f0d31dbc302c210a6ca8"
             };
 
-            try {
-                firebase.initializeApp(firebaseConfig);
-            } catch(e) {
-                console.log('Firebase ya inicializado');
+            if (!firebase.apps.length) {
+                firebase.initializeApp(config);
             }
 
-            const auth = firebase.auth();
-            const db = firebase.firestore();
-
-            let currentUser = null;
+            auth = firebase.auth();
+            db = firebase.firestore();
 
             auth.onAuthStateChanged(user => {
-                console.log('Auth:', user ? user.email : 'no');
+                console.log('Auth cambió:', user ? user.email : 'no');
                 currentUser = user;
                 updateUI();
             });
 
-            function updateUI() {
-                const galleryView = document.getElementById('galleryView');
-                const adminView = document.getElementById('adminView');
-                const loginView = document.getElementById('loginView');
-                const btnAdmin = document.getElementById('btnAdmin');
-                const btnLogout = document.getElementById('btnLogout');
-
-                galleryView.classList.remove('active');
-                adminView.classList.remove('active');
-                loginView.classList.remove('active');
-
-                if (currentUser) {
-                    console.log('Mostrando admin');
-                    adminView.classList.add('active');
-                    btnAdmin.style.display = 'none';
-                    btnLogout.style.display = 'block';
-                    loadAdminActivities();
-                } else {
-                    console.log('Mostrando galería');
-                    galleryView.classList.add('active');
-                    btnAdmin.style.display = 'block';
-                    btnLogout.style.display = 'none';
-                    loadGalleryActivities();
-                }
-            }
-
-            window.goToAdmin = function() {
-                const adminView = document.getElementById('adminView');
-                const loginView = document.getElementById('loginView');
-                const galleryView = document.getElementById('galleryView');
-
-                galleryView.classList.remove('active');
-                adminView.classList.remove('active');
-                loginView.classList.remove('active');
-
-                if (currentUser) {
-                    adminView.classList.add('active');
-                } else {
-                    loginView.classList.add('active');
-                }
-            };
-
-            window.loginWithGoogle = function() {
-                const provider = new firebase.auth.GoogleAuthProvider();
-                auth.signInWithPopup(provider).catch(err => alert('Error: ' + err.message));
-            };
-
-            window.logout = function() {
-                auth.signOut().then(() => {
-                    currentUser = null;
-                    updateUI();
-                });
-            };
-
-            window.saveActivity = function(e) {
-                e.preventDefault();
-                if (!currentUser) return alert('No autenticado');
-
-                const name = document.getElementById('activityName').value;
-                const date = document.getElementById('activityDate').value;
-                const description = document.getElementById('activityDescription').value;
-                const driveLink = document.getElementById('googleDriveLink').value;
-
-                db.collection('actividades').add({
-                    name, date, description, driveLink,
-                    createdBy: currentUser.uid,
-                    createdAt: new Date()
-                }).then(() => {
-                    alert('✅ Creada');
-                    document.getElementById('activityName').value = '';
-                    document.getElementById('activityDate').value = '';
-                    document.getElementById('activityDescription').value = '';
-                    document.getElementById('googleDriveLink').value = '';
-                    loadAdminActivities();
-                }).catch(e => alert('Error: ' + e.message));
-            };
-
-            window.deleteActivity = function(id) {
-                if (confirm('¿Eliminar?')) {
-                    db.collection('actividades').doc(id).delete().then(() => {
-                        alert('✅ Eliminada');
-                        loadAdminActivities();
-                    });
-                }
-            };
-
-            function loadGalleryActivities() {
-                db.collection('actividades').orderBy('date', 'desc').onSnapshot(snap => {
-                    const filter = document.getElementById('activitiesFilter');
-                    filter.innerHTML = '';
-                    if (snap.empty) {
-                        filter.innerHTML = '<div class="empty-state">📭 Sin actividades</div>';
-                        return;
-                    }
-                    snap.forEach(doc => {
-                        const data = doc.data();
-                        const card = document.createElement('div');
-                        card.style.cssText = 'background: white; padding: 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);';
-                        card.innerHTML = `<strong>${data.name}</strong><br>📅 ${formatDate(data.date)}`;
-                        filter.appendChild(card);
-                    });
-                });
-            }
-
-            function loadAdminActivities() {
-                if (!currentUser) return;
-                const list = document.getElementById('activitiesList');
-                db.collection('actividades').where('createdBy', '==', currentUser.uid).orderBy('date', 'desc').onSnapshot(snap => {
-                    list.innerHTML = '';
-                    if (snap.empty) {
-                        list.innerHTML = '<div class="empty-state">📭 Sin actividades</div>';
-                        return;
-                    }
-                    snap.forEach(doc => {
-                        const data = doc.data();
-                        const item = document.createElement('div');
-                        item.className = 'activity-item';
-                        item.innerHTML = `
-                            <div class="activity-info">
-                                <h3>${data.name}</h3>
-                                <p>📅 ${formatDate(data.date)}</p>
-                            </div>
-                            <button class="btn-danger" onclick="window.deleteActivity('${doc.id}')">🗑️</button>
-                        `;
-                        list.appendChild(item);
-                    });
-                });
-            }
-
-            function formatDate(d) {
-                return new Date(d).toLocaleDateString('es-ES', {year: 'numeric', month: 'long', day: 'numeric'});
-            }
-
-            console.log('✓ App inicializada');
+            console.log('✓ Firebase listo');
         }
 
-        // Iniciar cuando carguen los scripts
-        waitForFirebase();
+        function updateUI() {
+            const gallery = document.getElementById('gallery');
+            const admin = document.getElementById('admin');
+            const login = document.getElementById('login');
+            const btnAdmin = document.getElementById('btnAdmin');
+            const btnLogout = document.getElementById('btnLogout');
+
+            gallery.classList.remove('active');
+            admin.classList.remove('active');
+            login.classList.remove('active');
+
+            if (currentUser) {
+                console.log('Mostrando admin para:', currentUser.email);
+                admin.classList.add('active');
+                btnAdmin.style.display = 'none';
+                btnLogout.style.display = 'block';
+                loadAdmin();
+            } else {
+                console.log('Mostrando galería');
+                gallery.classList.add('active');
+                btnAdmin.style.display = 'block';
+                btnLogout.style.display = 'none';
+                loadGallery();
+            }
+        }
+
+        function goAdmin() {
+            console.log('goAdmin() - user:', currentUser ? currentUser.email : 'no');
+            
+            if (currentUser) {
+                document.getElementById('gallery').classList.remove('active');
+                document.getElementById('login').classList.remove('active');
+                document.getElementById('admin').classList.add('active');
+            } else {
+                document.getElementById('gallery').classList.remove('active');
+                document.getElementById('admin').classList.remove('active');
+                document.getElementById('login').classList.add('active');
+            }
+        }
+
+        function loginGoogle() {
+            console.log('loginGoogle()');
+            if (!auth) {
+                alert('Firebase no está listo aún');
+                return;
+            }
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider).catch(e => alert('Error: ' + e.message));
+        }
+
+        function logout() {
+            auth.signOut();
+        }
+
+        function createActivity(e) {
+            e.preventDefault();
+            if (!currentUser) return;
+
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const desc = document.getElementById('desc').value;
+            const drive = document.getElementById('drive').value;
+
+            db.collection('actividades').add({
+                name, date, description: desc, driveLink: drive,
+                createdBy: currentUser.uid,
+                createdAt: new Date()
+            }).then(() => {
+                alert('✅ Creada');
+                document.getElementById('name').value = '';
+                document.getElementById('date').value = '';
+                document.getElementById('desc').value = '';
+                document.getElementById('drive').value = '';
+                loadAdmin();
+            }).catch(e => alert('Error: ' + e.message));
+        }
+
+        function deleteActivity(id) {
+            if (confirm('¿Eliminar?')) {
+                db.collection('actividades').doc(id).delete().then(() => {
+                    alert('✅ Eliminada');
+                    loadAdmin();
+                });
+            }
+        }
+
+        function loadGallery() {
+            if (!db) return;
+            const list = document.getElementById('galleryList');
+            db.collection('actividades').orderBy('date', 'desc').onSnapshot(snap => {
+                list.innerHTML = '';
+                if (snap.empty) {
+                    list.innerHTML = '<div class="empty">📭 Sin actividades</div>';
+                    return;
+                }
+                snap.forEach(doc => {
+                    const d = doc.data();
+                    const div = document.createElement('div');
+                    div.style.cssText = 'background:white; padding:20px; border-radius:12px; margin-bottom:15px; box-shadow:0 2px 8px rgba(0,0,0,0.1);';
+                    div.innerHTML = `<strong>${d.name}</strong><br>📅 ${new Date(d.date).toLocaleDateString('es-ES')}`;
+                    list.appendChild(div);
+                });
+            });
+        }
+
+        function loadAdmin() {
+            if (!currentUser || !db) return;
+            const list = document.getElementById('adminList');
+            db.collection('actividades')
+                .where('createdBy', '==', currentUser.uid)
+                .orderBy('date', 'desc')
+                .onSnapshot(snap => {
+                    list.innerHTML = '';
+                    if (snap.empty) {
+                        list.innerHTML = '<div class="empty">📭 Sin actividades</div>';
+                        return;
+                    }
+                    snap.forEach(doc => {
+                        const d = doc.data();
+                        const div = document.createElement('div');
+                        div.className = 'activity-item';
+                        div.innerHTML = `
+                            <div>
+                                <h3>${d.name}</h3>
+                                <p style="font-size:13px; color:#666;">📅 ${new Date(d.date).toLocaleDateString('es-ES')}</p>
+                            </div>
+                            <button class="btn btn-red" onclick="deleteActivity('${doc.id}')">🗑️</button>
+                        `;
+                        list.appendChild(div);
+                    });
+                });
+        }
+
+        console.log('✓ Script cargado');
     </script>
 </body>
 </html>
