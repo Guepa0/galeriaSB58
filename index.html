@@ -50,12 +50,6 @@
             gap: 15px;
         }
 
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
         .header-text h1 {
             font-size: 28px;
             font-weight: bold;
@@ -111,13 +105,21 @@
             padding: 0 20px;
         }
 
-        /* GALERÍA PÚBLICA */
-        .gallery-section {
+        /* VISTAS */
+        .view {
             display: none;
         }
 
-        .gallery-section.active {
+        .view.active {
             display: block;
+        }
+
+        /* GALERÍA PÚBLICA */
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--color-verde-oscuro);
+            font-size: 28px;
         }
 
         .activities-filter {
@@ -195,114 +197,24 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .photo-item img,
-        .photo-item video {
+        .photo-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .photo-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
         }
 
-        .photo-item:hover .photo-overlay {
-            opacity: 1;
-        }
-
-        .play-icon {
-            color: white;
+        .empty-state-icon {
             font-size: 48px;
-        }
-
-        /* LIGHTBOX */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox-media {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 8px;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .lightbox-controls {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 1001;
-        }
-
-        .btn-lightbox {
-            background-color: var(--color-verde-oscuro);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-lightbox:hover {
-            background-color: var(--color-verde-claro);
-            transform: scale(1.05);
+            margin-bottom: 20px;
         }
 
         /* PANEL ADMIN */
-        .admin-section {
-            display: none;
-        }
-
-        .admin-section.active {
-            display: block;
-        }
-
         .admin-header {
             background: white;
             padding: 30px;
@@ -339,6 +251,7 @@
             border-radius: 8px;
             font-size: 14px;
             transition: border-color 0.3s ease;
+            font-family: inherit;
         }
 
         input[type="text"]:focus,
@@ -392,23 +305,6 @@
             background-color: #c0392b;
         }
 
-        .btn-edit {
-            background-color: var(--color-azul);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            margin-right: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-edit:hover {
-            background-color: #1565c0;
-        }
-
-        /* LISTADO DE ACTIVIDADES */
         .activities-list {
             background: white;
             border-radius: 12px;
@@ -439,23 +335,7 @@
             margin: 3px 0;
         }
 
-        .activity-actions {
-            display: flex;
-            gap: 10px;
-        }
-
         /* LOGIN */
-        .login-section {
-            display: none;
-        }
-
-        .login-section.active {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 60vh;
-        }
-
         .login-box {
             background: white;
             padding: 40px;
@@ -463,6 +343,7 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             text-align: center;
             max-width: 400px;
+            margin: 60px auto;
         }
 
         .login-box h2 {
@@ -495,7 +376,12 @@
             transform: translateY(-2px);
         }
 
-        /* RESPONSIVE */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -515,66 +401,9 @@
                 align-items: flex-start;
             }
 
-            .activity-actions {
-                width: 100%;
-                margin-top: 15px;
-            }
-
             .photos-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
-        }
-
-        /* MENSAJES */
-        .alert {
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .alert-error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-
-        .empty-state-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #999;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--color-azul);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -582,9 +411,8 @@
     <header>
         <div class="header-content">
             <div class="logo-section">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABwgAAAX8CAYAAAAxD9+gAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAABMZBJREFUeNrs3T9229a6N2DkrNsffgXqw7RszDsCwyMwzwjMjCBKgdpOzcLxCCSPwMoIxIzASoPWTM3i6IzgftgmFEsyKREU/wB7P89a" alt="Logo SanBorja58" class="logo-img" style="display: none;">
                 <div class="header-text">
-                    <h1>Tropa Taulichusco</h1>
+                    <h1>🍃 Tropa Taulichusco</h1>
                     <p>San Borja 58 - Limatambo</p>
                 </div>
             </div>
@@ -597,44 +425,20 @@
 
     <div class="container">
         <!-- GALERÍA PÚBLICA -->
-        <div class="gallery-section active" id="gallerySection">
-            <h2 style="text-align: center; margin-bottom: 30px; color: var(--color-verde-oscuro); font-size: 28px;">
-                📸 Nuestras Actividades
-            </h2>
-
-            <div class="activities-filter" id="activitiesFilter">
-                <!-- Se llena dinámicamente -->
-            </div>
-
-            <div class="photos-grid" id="photosGrid">
-                <!-- Se llena dinámicamente -->
-            </div>
-
-            <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="view active" id="galleryView">
+            <h2 class="gallery-title">📸 Nuestras Actividades</h2>
+            <div class="activities-filter" id="activitiesFilter"></div>
+            <div class="photos-grid" id="photosGrid"></div>
+            <div class="empty-state" id="emptyState">
                 <div class="empty-state-icon">📷</div>
                 <p>Selecciona una actividad para ver las fotos</p>
             </div>
         </div>
 
-        <!-- LIGHTBOX -->
-        <div class="lightbox" id="lightbox">
-            <div class="lightbox-content">
-                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-                <img id="lightboxImg" class="lightbox-media" style="display: none;">
-                <video id="lightboxVideo" class="lightbox-media" style="display: none;" controls></video>
-                <div class="lightbox-controls">
-                    <button class="btn-lightbox" onclick="downloadMedia()">⬇️ Descargar</button>
-                    <button class="btn-lightbox" onclick="closeLightbox()">Cerrar</button>
-                </div>
-            </div>
-        </div>
-
         <!-- PANEL ADMIN -->
-        <div class="admin-section" id="adminSection">
+        <div class="view" id="adminView">
             <div class="admin-header">
                 <div class="admin-title">🔧 Panel de Administración</div>
-
-                <!-- FORMULARIO -->
                 <form onsubmit="saveActivity(event)">
                     <div class="form-row">
                         <div class="form-group">
@@ -655,29 +459,23 @@
                     <div class="form-group">
                         <label for="googleDriveLink">Link de Carpeta Google Drive *</label>
                         <input type="text" id="googleDriveLink" required placeholder="Ej: https://drive.google.com/drive/folders/1ABC...">
-                        <small style="color: #666; display: block; margin-top: 8px;">
-                            📌 Tip: Comparte la carpeta con permisos de lectura y copia el link aquí
-                        </small>
+                        <small style="color: #666; display: block; margin-top: 8px;">📌 Comparte la carpeta y copia el link aquí</small>
                     </div>
 
                     <button type="submit" class="btn-primary">✅ Crear Actividad</button>
                 </form>
             </div>
 
-            <!-- LISTADO DE ACTIVIDADES -->
             <div style="margin-top: 40px;">
                 <h3 style="color: var(--color-verde-oscuro); margin-bottom: 20px; font-size: 20px;">📋 Actividades Existentes</h3>
                 <div class="activities-list" id="activitiesList">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        Cargando actividades...
-                    </div>
+                    <div class="loading">Cargando actividades...</div>
                 </div>
             </div>
         </div>
 
         <!-- LOGIN -->
-        <div class="login-section" id="loginSection">
+        <div class="view" id="loginView">
             <div class="login-box">
                 <div style="font-size: 48px; margin-bottom: 20px;">🔐</div>
                 <h2>Acceso Restringido</h2>
@@ -693,7 +491,9 @@
     <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js"></script>
 
     <script>
-        // CONFIGURACIÓN FIREBASE
+        console.log('=== Iniciando aplicación ===');
+
+        // Configuración Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyDI-kro274J6dafEEIVRg9EtM3UF8QOF9g",
             authDomain: "galeriasb58.firebaseapp.com",
@@ -703,39 +503,47 @@
             appId: "1:367406205049:web:b4f0d31dbc302c210a6ca8"
         };
 
+        console.log('Inicializando Firebase...');
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
+        console.log('✓ Firebase inicializado');
 
         let currentUser = null;
         let selectedActivityId = null;
 
-        // ESTADO DE SESIÓN
-        auth.onAuthStateChanged(user => {
+        // Monitorear estado de autenticación
+        auth.onAuthStateChanged(function(user) {
+            console.log('Auth state changed - Usuario:', user ? user.email : 'NO AUTENTICADO');
             currentUser = user;
-            updateUIState();
+            updateUI();
         });
 
-        function updateUIState() {
-            const gallerySection = document.getElementById('gallerySection');
-            const adminSection = document.getElementById('adminSection');
-            const loginSection = document.getElementById('loginSection');
+        function updateUI() {
+            console.log('updateUI() - currentUser:', currentUser ? currentUser.email : null);
+            
+            const galleryView = document.getElementById('galleryView');
+            const adminView = document.getElementById('adminView');
+            const loginView = document.getElementById('loginView');
             const btnAdmin = document.getElementById('btnAdmin');
             const btnLogout = document.getElementById('btnLogout');
 
+            // Ocultar todas las vistas
+            galleryView.classList.remove('active');
+            adminView.classList.remove('active');
+            loginView.classList.remove('active');
+
             if (currentUser) {
                 // Usuario autenticado - mostrar admin
-                gallerySection.classList.remove('active');
-                adminSection.classList.add('active');
-                loginSection.classList.remove('active');
+                console.log('Mostrando vista de admin');
+                adminView.classList.add('active');
                 btnAdmin.style.display = 'none';
                 btnLogout.style.display = 'block';
                 loadActivitiesForAdmin();
             } else {
                 // Usuario no autenticado - mostrar galería
-                gallerySection.classList.add('active');
-                adminSection.classList.remove('active');
-                loginSection.classList.remove('active');
+                console.log('Mostrando vista de galería');
+                galleryView.classList.add('active');
                 btnAdmin.style.display = 'block';
                 btnLogout.style.display = 'none';
                 loadActivitiesForGallery();
@@ -743,50 +551,70 @@
         }
 
         function goToAdmin() {
+            console.log('goToAdmin() - currentUser:', currentUser ? currentUser.email : null);
+            
+            const galleryView = document.getElementById('galleryView');
+            const adminView = document.getElementById('adminView');
+            const loginView = document.getElementById('loginView');
+
+            galleryView.classList.remove('active');
+            adminView.classList.remove('active');
+            loginView.classList.remove('active');
+
             if (currentUser) {
-                document.getElementById('gallerySection').classList.remove('active');
-                document.getElementById('adminSection').classList.add('active');
+                console.log('✓ Mostrando panel admin');
+                adminView.classList.add('active');
+                loadActivitiesForAdmin();
             } else {
-                document.getElementById('gallerySection').classList.remove('active');
-                document.getElementById('loginSection').classList.add('active');
+                console.log('✓ Mostrando login');
+                loginView.classList.add('active');
             }
         }
 
         function loginWithGoogle() {
+            console.log('loginWithGoogle() llamado');
             const provider = new firebase.auth.GoogleAuthProvider();
+            
             auth.signInWithPopup(provider)
                 .then(result => {
+                    console.log('✓ Login exitoso:', result.user.email);
                     currentUser = result.user;
-                    updateUIState();
+                    updateUI();
                 })
                 .catch(error => {
-                    alert('Error al iniciar sesión: ' + error.message);
+                    console.error('❌ Error en login:', error.message);
+                    alert('Error: ' + error.message);
                 });
         }
 
         function logout() {
+            console.log('logout() llamado');
             auth.signOut().then(() => {
+                console.log('✓ Sesión cerrada');
                 currentUser = null;
                 document.getElementById('activityName').value = '';
                 document.getElementById('activityDate').value = '';
                 document.getElementById('activityDescription').value = '';
                 document.getElementById('googleDriveLink').value = '';
-                updateUIState();
+                updateUI();
             });
         }
 
         function saveActivity(event) {
             event.preventDefault();
+            console.log('saveActivity() llamado');
+
+            if (!currentUser) {
+                alert('Debes iniciar sesión primero');
+                return;
+            }
 
             const name = document.getElementById('activityName').value;
             const date = document.getElementById('activityDate').value;
             const description = document.getElementById('activityDescription').value;
             const driveLink = document.getElementById('googleDriveLink').value;
 
-            if (!currentUser) {
-                alert('Debes iniciar sesión primero');
-                return;
-            }
+            console.log('Guardando actividad:', name);
 
             db.collection('actividades').add({
                 name: name,
@@ -797,6 +625,7 @@
                 createdAt: new Date(),
                 photos: []
             }).then(() => {
+                console.log('✓ Actividad creada');
                 alert('✅ Actividad creada correctamente');
                 document.getElementById('activityName').value = '';
                 document.getElementById('activityDate').value = '';
@@ -804,27 +633,35 @@
                 document.getElementById('googleDriveLink').value = '';
                 loadActivitiesForAdmin();
             }).catch(error => {
+                console.error('❌ Error:', error.message);
                 alert('Error: ' + error.message);
             });
         }
 
         function loadActivitiesForGallery() {
+            console.log('loadActivitiesForGallery()');
+            
             const filter = document.getElementById('activitiesFilter');
             const photosGrid = document.getElementById('photosGrid');
+            const emptyState = document.getElementById('emptyState');
 
             db.collection('actividades').orderBy('date', 'desc').onSnapshot(snapshot => {
+                console.log('Actividades encontradas:', snapshot.size);
+                
                 filter.innerHTML = '';
                 photosGrid.innerHTML = '';
 
                 if (snapshot.empty) {
-                    document.getElementById('emptyState').style.display = 'block';
+                    emptyState.style.display = 'block';
                     return;
                 }
 
-                document.getElementById('emptyState').style.display = 'none';
+                emptyState.style.display = 'none';
 
                 snapshot.forEach(doc => {
                     const data = doc.data();
+                    
+                    // Crear tarjeta de actividad
                     const card = document.createElement('div');
                     card.className = 'activity-card';
                     card.innerHTML = `
@@ -832,25 +669,58 @@
                         <div class="activity-date">📅 ${formatDate(data.date)}</div>
                         <div class="activity-count">📸 ${data.photos ? data.photos.length : 0} fotos</div>
                     `;
-                    card.onclick = () => selectActivityForGallery(doc.id, data);
+                    
+                    card.onclick = () => {
+                        console.log('Seleccionada actividad:', data.name);
+                        document.querySelectorAll('.activity-card').forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+                        selectedActivityId = doc.id;
+                        showPhotosForActivity(data);
+                    };
+                    
                     filter.appendChild(card);
 
+                    // Seleccionar la primera actividad automáticamente
                     if (!selectedActivityId) {
                         selectedActivityId = doc.id;
                         card.classList.add('selected');
-                        loadPhotosForGallery(data);
+                        showPhotosForActivity(data);
                     }
                 });
+            }, error => {
+                console.error('❌ Error cargando actividades:', error.message);
             });
         }
 
+        function showPhotosForActivity(activityData) {
+            console.log('showPhotosForActivity:', activityData.name);
+            const photosGrid = document.getElementById('photosGrid');
+            photosGrid.innerHTML = `
+                <div class="empty-state" style="grid-column: 1/-1;">
+                    <div class="empty-state-icon">📁</div>
+                    <p><strong>${activityData.name}</strong></p>
+                    <p style="font-size: 12px; margin-top: 10px;">Las fotos se cargan desde Google Drive</p>
+                    <p style="font-size: 11px; color: #999; margin-top: 5px;">Link: ${activityData.driveLink}</p>
+                </div>
+            `;
+        }
+
         function loadActivitiesForAdmin() {
+            console.log('loadActivitiesForAdmin()');
+            
+            if (!currentUser) {
+                console.log('Sin usuario autenticado');
+                return;
+            }
+
             const list = document.getElementById('activitiesList');
 
             db.collection('actividades')
                 .where('createdBy', '==', currentUser.uid)
                 .orderBy('date', 'desc')
                 .onSnapshot(snapshot => {
+                    console.log('Actividades del admin:', snapshot.size);
+                    
                     list.innerHTML = '';
 
                     if (snapshot.empty) {
@@ -869,88 +739,25 @@
                                 <p>${data.description || 'Sin descripción'}</p>
                                 <p style="color: var(--color-azul); font-size: 12px;">📸 ${data.photos ? data.photos.length : 0} fotos</p>
                             </div>
-                            <div class="activity-actions">
-                                <button class="btn-edit" onclick="editActivity('${doc.id}')">✏️ Editar</button>
-                                <button class="btn-danger" onclick="deleteActivity('${doc.id}')">🗑️ Eliminar</button>
-                            </div>
+                            <button class="btn-danger" onclick="deleteActivity('${doc.id}')">🗑️ Eliminar</button>
                         `;
                         list.appendChild(item);
                     });
+                }, error => {
+                    console.error('❌ Error cargando actividades:', error.message);
                 });
         }
 
-        function selectActivityForGallery(id, data) {
-            selectedActivityId = id;
-            document.querySelectorAll('.activity-card').forEach(card => card.classList.remove('selected'));
-            event.target.closest('.activity-card').classList.add('selected');
-            loadPhotosForGallery(data);
-        }
-
-        function loadPhotosForGallery(activityData) {
-            const photosGrid = document.getElementById('photosGrid');
-            photosGrid.innerHTML = '<div class="loading"><div class="spinner"></div>Cargando fotos...</div>';
-
-            // Aquí iría la integración con Google Drive
-            // Por ahora mostramos un mensaje
-            photosGrid.innerHTML = `
-                <div class="empty-state" style="grid-column: 1/-1;">
-                    <div class="empty-state-icon">🔗</div>
-                    <p>Las fotos se cargarán desde Google Drive</p>
-                    <p style="font-size: 12px; margin-top: 10px;">Link: ${activityData.driveLink}</p>
-                </div>
-            `;
-        }
-
-        function openLightbox(src, type = 'image') {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('lightboxImg');
-            const video = document.getElementById('lightboxVideo');
-
-            if (type === 'video') {
-                img.style.display = 'none';
-                video.style.display = 'block';
-                video.src = src;
-            } else {
-                img.style.display = 'block';
-                video.style.display = 'none';
-                img.src = src;
-            }
-
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function downloadMedia() {
-            const img = document.getElementById('lightboxImg');
-            const video = document.getElementById('lightboxVideo');
-            const link = document.createElement('a');
-
-            if (img.style.display !== 'none') {
-                link.href = img.src;
-                link.download = 'foto_' + Date.now() + '.jpg';
-            } else {
-                link.href = video.src;
-                link.download = 'video_' + Date.now() + '.mp4';
-            }
-
-            link.click();
-        }
-
-        function editActivity(id) {
-            alert('Función de editar en desarrollo. Por ahora elimina y crea una nueva.');
-        }
-
         function deleteActivity(id) {
+            console.log('deleteActivity:', id);
+            
             if (confirm('¿Estás seguro de que quieres eliminar esta actividad?')) {
                 db.collection('actividades').doc(id).delete().then(() => {
+                    console.log('✓ Actividad eliminada');
                     alert('✅ Actividad eliminada');
                     loadActivitiesForAdmin();
                 }).catch(error => {
+                    console.error('❌ Error:', error.message);
                     alert('Error: ' + error.message);
                 });
             }
@@ -961,13 +768,7 @@
             return new Date(dateStr).toLocaleDateString('es-ES', options);
         }
 
-        // Tecla ESC para cerrar lightbox
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') closeLightbox();
-        });
-
-        // Inicializar
-        updateUIState();
+        console.log('=== Aplicación lista ===');
     </script>
 </body>
 </html>
