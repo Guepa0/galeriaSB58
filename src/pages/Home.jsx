@@ -42,7 +42,7 @@ export default function Home() {
         <p>Grupo Scout San Borja 58 — Limatambo</p>
       </div>
 
-      <div className="page" style={{ paddingTop: 0 }}>
+      <div className="activities-section">
         {loading ? (
           <div className="loading">
             <div className="spinner" />
@@ -50,16 +50,19 @@ export default function Home() {
           </div>
         ) : activities.length === 0 ? (
           <div className="empty-state">
-            <div className="icon">🖼️</div>
+            <div className="icon">🏕️</div>
             <h3>No hay actividades publicadas aún</h3>
             <p>Vuelve pronto para ver el contenido.</p>
           </div>
         ) : (
-          <div className="activities-grid">
-            {activities.map((act) => (
-              <ActivityCard key={act.id} activity={act} />
-            ))}
-          </div>
+          <>
+            <div className="section-title">Actividades</div>
+            <div className="activities-grid">
+              {activities.map((act) => (
+                <ActivityCard key={act.id} activity={act} />
+              ))}
+            </div>
+          </>
         )}
       </div>
     </>
@@ -74,8 +77,9 @@ function ActivityCard({ activity }) {
           {activity.coverUrl ? (
             <img src={activity.coverUrl} alt={activity.name} />
           ) : (
-            <span>🖼️</span>
+            <span>🏕️</span>
           )}
+          <div className="cover-overlay" />
         </div>
         <div className="info">
           <h3>{activity.name}</h3>
