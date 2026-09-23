@@ -47,6 +47,13 @@ function extractDriveFolderId(input) {
   return trimmed
 }
 
+// Parsea "YYYY-MM-DD" sin conversión de zona horaria
+function parseLocalDate(dateStr) {
+  if (!dateStr) return null
+  const [year, month, day] = dateStr.split('-').map(Number)
+  return new Date(year, month - 1, day)
+}
+
 const EMPTY_FORM = {
   name: '',
   description: '',
@@ -209,7 +216,7 @@ export default function Admin() {
                   </td>
                   <td>
                     {act.eventDate
-                      ? new Date(act.eventDate).toLocaleDateString('es', {
+                      ? parseLocalDate(act.eventDate).toLocaleDateString('es', {
                           year: 'numeric',
                           month: 'short',
                           day: 'numeric',
