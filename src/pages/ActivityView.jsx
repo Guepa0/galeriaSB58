@@ -5,8 +5,6 @@ import { db } from '../firebase'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
 import Download from 'yet-another-react-lightbox/plugins/download'
-import JSZip from 'jszip'
-import { saveAs } from 'file-saver'
 import { showToast } from '../components/Toast'
 
 const DRIVE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY
@@ -81,7 +79,6 @@ export default function ActivityView() {
   const [coverUrl, setCoverUrl] = useState(null)
   const [loading, setLoading] = useState(true)
   const [lightboxIndex, setLightboxIndex] = useState(-1)
-  const [downloading, setDownloading] = useState(false)
 
   useEffect(() => {
     async function load() {
@@ -128,28 +125,14 @@ export default function ActivityView() {
     title: f.name,
   }))
 
-  const downloadAll = useCallback(async () => {
-    if (!files.length) return
-    setDownloading(true)
-    showToast('Preparando descarga ZIP…')
-    try {
-      const zip = new JSZip()
-      await Promise.all(
-        files.map(async (f) => {
-          const resp = await fetch(getDownloadUrl(f))
-          const blob = await resp.blob()
-          zip.file(f.name, blob)
-        })
-      )
-      const content = await zip.generateAsync({ type: 'blob' })
-      saveAs(content, `${activity.name || 'galeria'}.zip`)
-      showToast('Descarga completada', 'success')
-    } catch {
-      showToast('Error al generar el ZIP', 'error')
-    } finally {
-      setDownloading(false)
-    }
-  }, [files, activity])
+  const downloadAll = useCallback(() => {
+    if (!activity?.driveFolderId) return
+    // Drive no permite fetch() por CORS — abrimos la carpeta directamente
+    window.open(
+      `https://drive.google.com/drive/folders/${activity.driveFolderId}`,
+      '_blank'
+    )
+  }, [activity])
 
   if (loading) {
     return (
@@ -205,10 +188,9 @@ export default function ActivityView() {
                 <button
                   className="btn btn-lime"
                   onClick={downloadAll}
-                  disabled={downloading}
                 >
                   <IconDownload size={20} />
-                  {downloading ? 'Preparando…' : 'Descargar todo (ZIP)'}
+                  📁 Ver carpeta en Drive
                 </button>
               )}
               <span className="file-count">
